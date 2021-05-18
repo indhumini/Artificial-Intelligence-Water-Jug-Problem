@@ -22,6 +22,18 @@ class Jug:
 
     def has_target_volume(self, target_volume):
         return self.current_volume == target_volume
+    
+    def transfer(self, target_jug):
+
+        target_volume = min(target_jug.capacity,
+                            (target_jug.current_volume + self.current_volume))
+        
+        self_volume = max(0, target_jug.current_volume +
+                       self.current_volume - target_jug.capacity)
+        
+        self.current_volume = self_volume
+        target_jug.current_volume = target_volume
+
 
     
         return True
